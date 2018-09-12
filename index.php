@@ -11,7 +11,7 @@
 </html>
 
 <?php
-    ini_set('display_errors', 'off');
+    // ini_set('display_errors', 'off');
     if(isset($_POST['keyword'])){
         $url="https://www.els.co.id/?category=&s=".$_POST['keyword']."&search_posttype=product&search_sku=1";
         $ch = curl_init();
@@ -29,7 +29,7 @@
 
         echo"<h3>Hasil pencarian untuk kata '".$_POST['keyword']."'</h3>";
         foreach($results as $result){
-            echo $result->childNodes[1]->nodeValue."-".$result->childNodes[9]->nodeValue."<br/>";
+            echo $result->nodeValue."<br/>";
         }
     }
     
