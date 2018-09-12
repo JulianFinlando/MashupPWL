@@ -34,7 +34,7 @@
 
 		echo "<h3>Hasil Pencarian untuk kata '".$_POST['keyword']."'</h3>";
 		foreach ($results as $result) {
-			echo $result -> childNodes[3] -> nodeValue."Harga: ".$result ->childNodes[5] -> nodeValue."<br/><br/>";
+			echo $result->childNodes[3]->nodeValue."Harga: ".$result ->childNodes[5] -> nodeValue."<br/><br/>";
 			// echo $result -> nodeValue."<br/><br/>";
 
 		}
