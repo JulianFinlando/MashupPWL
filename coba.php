@@ -11,7 +11,7 @@
 </html>
 
 <?php
-    $url = "https://www.mobil123.com/";
+    $url = "http://mobilmu.id/";
     $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
@@ -22,3 +22,5 @@
 http://www.mobil88.astra.co.id/
 https://www.mobil123.com/
 https://www.mobilwow.com/
+
+https://www.jualo.com/ << ada popup
