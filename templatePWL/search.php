@@ -56,21 +56,20 @@
         $results2L = $xpath2->query('//div[@class="search-content"]/div/div[@class="listing-block"]');
 
 
-        //mobilwow
-        $url="http://www.mobil88.astra.co.id/cari_mobil?keyword=".$_POST['keyword']."";
-        $ch = curl_init();
+        //otomart
+        $url3 = "https://www.otomart.id/cari-mobil/semua.htm?q=".$_POST['keyword']."";
+        $ch3 = curl_init();
 
         //Jika POST
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $output = curl_exec($ch);
-        curl_close($ch);
-
-        $dom = new DOMDocument();
-        $dom->loadHTML($output);
-        //echo $output;
-        $xpath = new DOMXPath($dom);
-        $results = $xpath->query('//div[@class="cars grid-3"]/div[@class="inline hoverable"]');
+        curl_setopt($ch3, CURLOPT_URL, $url3);
+        curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
+        $output3 = curl_exec($ch3);
+        curl_close($ch3);
+    
+        $dom3 = NEW DOMDocument();
+        $dom3 -> loadHTML($output3);
+        $xpath3 = NEW DOMXPath($dom3);
+        $results3 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"]/div[@class="col-sm-3"]');
         
         
     }
@@ -157,18 +156,20 @@
 
           </div>
 
-          <h2>MobilWow</h2>
+          <h2>OtoMart</h2>
           <div class="row">
+
+            <?php foreach ($results3 as $result3) { ?>
 
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Six</a>
+                    <a href="#"><?php echo $result3->childNodes[3]->nodeValue."<br/><br/>";?></a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <h5><?php echo $result3->childNodes[5]->nodeValue."<br/><br/>";?></h5>
+                  <p class="card-text"></p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -176,6 +177,7 @@
               </div>
             </div>
 
+            <?php } ?>
 
           </div>
           <!-- /.row -->
