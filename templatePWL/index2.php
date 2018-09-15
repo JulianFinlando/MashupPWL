@@ -115,10 +115,10 @@
                 <img class="d-block img-fluid" src="https://uploads.haystak.com/seo/responsive_model_pages/Used/Kia/images/header.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                <img class="d-block img-fluid" src="http://worajv.com/wp-content/uploads/2015/01/gt4_content_1_900x350px.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                <img class="d-block img-fluid" src="http://www.adhulhondamakassar.com/wp-content/uploads/2018/08/99ZT9QcO69FB2HKzifeS_honda_id_bannerhrvq_02-900x350.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
