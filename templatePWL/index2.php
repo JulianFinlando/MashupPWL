@@ -45,7 +45,7 @@
     $resultsMobil88g4 = $xpath->query('//div[@class="fake-anchor"][4]//img/@src');
     
     //hasil dari web mobibekas
-    $url2 = "https://www.mobilbekas.co.id/";
+    $url2 = "https://garasi.id/mobil-pilihan-garasi-id";
 		$ch2 = curl_init();
 		curl_setopt($ch2, CURLOPT_URL, $url2);
 		curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
@@ -55,10 +55,18 @@
 		$dom2 -> loadHTML($output2);
     $xpath2 = NEW DOMXPath($dom2);
 
-    $resultsMobilBekas = $xpath2->query('//div[@class="listing-content"][1]');
+    $resultsGarasi = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][1]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
+    $resultsGarasi2 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][2]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
+    $resultsGarasi3 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][3]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
+    $resultsGarasi4 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][4]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
     
-    //hasil dari web mobilwow
-    $url3 = "https://www.mobilwow.com/mobil-bekas";
+    $resultsGarasig = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][1]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
+    $resultsGarasig2 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][2]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
+    $resultsGarasig3 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][3]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
+    $resultsGarasig4 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][4]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
+
+    //hasil dari web otomart
+    $url3 = "https://www.otomart.id/cari-mobil/?sortby=post-terbaru";
 		$ch3 = curl_init();
 		curl_setopt($ch3, CURLOPT_URL, $url3);
 		curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
@@ -68,12 +76,10 @@
 		$dom3 -> loadHTML($output3);
     $xpath3 = NEW DOMXPath($dom3);
 
-    $resultsMobilWow = $xpath3->query('///div[@class="itemlabel2 carsaleinfo super 73"][1]');  
-    $resultsMobilWowg = $xpath3->query('//div[@class="listitem"]/img/@src');
-    foreach($resultsMobilWowg as $resultMobilWowg){
-      //echo $resultMobilWowg->nodeValue;
-    }
-    
+    $resultsOtomart = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][1]');  
+    $resultsOtomart2 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][2]');
+    $resultsOtomart3 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][3]');
+    $resultsOtomart4 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][4]');
 ?>
 
   <body>
@@ -112,7 +118,9 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="d-block img-fluid" src="https://uploads.haystak.com/seo/responsive_model_pages/Used/Kia/images/header.jpg" alt="First slide">
+              <?php foreach($resultsMobil88g1 as $resultMobil88g1){ ?>
+                <img class="d-block img-fluid" src="<?php echo $resultMobil88g1->nodeValue; ?>" alt="First slide">
+              <?php } ?>
               </div>
               <div class="carousel-item">
                 <img class="d-block img-fluid" src="http://worajv.com/wp-content/uploads/2015/01/gt4_content_1_900x350px.jpg" alt="Second slide">
@@ -131,7 +139,8 @@
             </a>
           </div>          
 
-          <h2>Mobil 88</h2>
+          <h2>Mobil Bekas Terbaru Mobil 88 Astra</h2>
+          <hr>
           <div class="row">
             <?php foreach ($resultsMobil881 as $resultMobil881) { ?>
               <?php foreach($resultsMobil88g1 as $resultMobil88g1){ ?>
@@ -209,30 +218,92 @@
             <?php } ?>
             <?php } ?>
           </div>
+          
 
-          <h2>MobilBekas</h2>
+          <h2>Mobil Bekas Terbaru Garasi.id</h2>
+          <hr>
           <div class="row">
-          <?php foreach ($resultsMobilBekas as $resultMobilBekas) {  
-              ?>
-            <div class="col-lg-3 col-md-6 mb-4">
+            <?php foreach ($resultsGarasi as $resultGarasi) { ?>
+              <?php foreach($resultsGarasig as $resultGarasig){ ?>
+            <div class="col-md-3">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
+                <a href="#"><img class="card-img-top" src="<?php echo $resultGarasig->nodeValue; ?>" alt=""></a>
+                  <div class="card-body">
                   <h4 class="card-title">
-                    <a href=""><?php echo $resultMobilBekas->childNodes[1]->nodeValue."<br/>";?> </a>
+                  
+                    <a href=""><?php echo $resultGarasi->nodeValue."<br/>"; ?></a>
                   </h4>
-                  <h5><?php echo $resultMobilBekas->childNodes[3]->nodeValue."<br/>"; ?></h5>
-                  <p class="card-text"><?php echo $resultMobilBekas->childNodes[5]->nodeValue."<br/>"; ?>
-                  <?php echo $resultMobilBekas->childNodes[9]->nodeValue."<br/>"; ?></p>
+                  <h5><?php echo $resultGarasi->childNodes[1]->nodeValue."<br>"; ?></h5>
+                  <p class="card-text"><?php echo $resultGarasi->childNodes[4]->nodeValue."<br>"; ?></p>
                 </div>
               </div>
             </div>
-          <?php } ?>
-          </div>
+            <?php } ?>
+            <?php } ?>
 
-          <h2>MobilWow</h2>
+            <?php foreach ($resultsGarasi2 as $resultGarasi2) { ?>
+              <?php foreach($resultsGarasig2 as $resultGarasig2){ ?>
+            <div class="col-md-3">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="<?php echo $resultGarasig2->nodeValue; ?>" alt=""></a>
+                  <div class="card-body">
+                  <h4 class="card-title">
+                  
+                    <a href=""><?php echo $resultGarasi2->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultGarasi2->childNodes[1]->nodeValue."<br>"; ?></h5>
+                  <p class="card-text"><?php echo $resultGarasi2->childNodes[4]->nodeValue."<br>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            <?php } ?>
+
+            <?php foreach ($resultsGarasi3 as $resultGarasi3) { ?>
+              <?php foreach($resultsGarasig3 as $resultGarasig3){ ?>
+            <div class="col-md-3">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="<?php echo $resultGarasig3->nodeValue; ?>" alt=""></a>
+                  <div class="card-body">
+                  <h4 class="card-title">
+                  
+                    <a href=""><?php echo $resultGarasi3->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultGarasi3->childNodes[1]->nodeValue."<br>"; ?></h5>
+                  <p class="card-text"><?php echo $resultGarasi3->childNodes[4]->nodeValue."<br>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            <?php } ?>
+            
+            <?php foreach ($resultsGarasi4 as $resultGarasi4) { ?>
+              <?php foreach($resultsGarasig4 as $resultGarasig4){ ?>
+            <div class="col-md-3">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="<?php echo $resultGarasig4->nodeValue; ?>" alt=""></a>
+                  <div class="card-body">
+                  <h4 class="card-title">
+                  
+                    <a href=""><?php echo $resultGarasi4->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultGarasi4->childNodes[1]->nodeValue."<br>"; ?></h5>
+                  <p class="card-text"><?php echo $resultGarasi4->childNodes[4]->nodeValue."<br>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            <?php } ?>
+
+            </div>
+
+
+
+
+          <h2>Mobil Bekas Terbaru Otomart</h2>
+          <hr>
           <div class="row">
-            <?php foreach($resultsMobilWow as $resultMobilWow) { ?>
+            <?php foreach($resultsOtomart as $resultOtomart) { ?>
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card h-100">
                 <?php  ?>
@@ -240,15 +311,66 @@
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#"><?php echo $resultMobilWow->childNodes[1]->nodeValue."<br/>"; ?></a>
+                    <a href="#"><?php echo $resultOtomart->childNodes[1]->nodeValue."<br/>"; ?></a>
                   </h4>
-                  <h5><?php echo $resultMobilWow->childNodes[5]->nodeValue."<br/>"; ?></h5>
-                  <p class="card-text"><?php echo $resultMobilWow->childNodes[3]->nodeValue."<br/>"; ?></p>
+                  <h5><?php echo $resultOtomart->childNodes[5]->nodeValue."<br/>"; ?></h5>
+                  <p class="card-text"><?php //echo $resultOtomart->childNodes[3]->nodeValue."<br/>"; ?></p>
                 </div>
               </div>
             </div>
             <?php } ?>
-          </div>
+            
+            <?php foreach($resultsOtomart2 as $resultOtomart2) { ?>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <?php  ?>
+                    
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#"><?php echo $resultOtomart2->childNodes[1]->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultOtomart2->childNodes[5]->nodeValue."<br/>"; ?></h5>
+                  <p class="card-text"><?php //echo $resultOtomart2->childNodes[3]->nodeValue."<br/>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+
+            <?php foreach($resultsOtomart3 as $resultOtomart3) { ?>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <?php  ?>
+                    
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#"><?php echo $resultOtomart3->childNodes[1]->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultOtomart3->childNodes[5]->nodeValue."<br/>"; ?></h5>
+                  <p class="card-text"><?php //echo $resultOtomart3->childNodes[3]->nodeValue."<br/>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+
+            <?php foreach($resultsOtomart4 as $resultOtomart4) { ?>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <?php  ?>
+                    
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#"><?php echo $resultOtomart4->childNodes[1]->nodeValue."<br/>"; ?></a>
+                  </h4>
+                  <h5><?php echo $resultOtomart4->childNodes[5]->nodeValue."<br/>"; ?></h5>
+                  <p class="card-text"><?php //echo $resultOtomart4->childNodes[3]->nodeValue."<br/>"; ?></p>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            </div>
           <!-- /.row -->
 
         </div>
