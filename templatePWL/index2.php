@@ -15,6 +15,13 @@
 
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
+    <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
 
   </head>
   <?php 
@@ -60,6 +67,7 @@
     $resultsGarasi3 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][3]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
     $resultsGarasi4 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][4]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="p-2"]');
     
+    //gambar
     $resultsGarasig = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][1]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
     $resultsGarasig2 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][2]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
     $resultsGarasig3 = $xpath2->query('//div[@class="row"]/a[@class="VehicleCard col-6 mb-3 link-none"][3]/div[@class="Card d-flex fd-column position-relative overflow-hidden bg-white"]/div[@class="position-relative"]//img/@src');
@@ -80,6 +88,8 @@
     $resultsOtomart2 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][2]');
     $resultsOtomart3 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][3]');
     $resultsOtomart4 = $xpath3->query('//div[@class="col-md-12"]/div[@class="box-car clearfix"][4]');
+    //gambar
+    //$resultsOtomartg = $xpath3->query('//div[@class="imgcar-search img-car-only"]');
 ?>
 
   <body>
@@ -109,35 +119,53 @@
 
 
         <div class="col-lg-12">
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" align="center">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="carousel-item active">
-              <?php foreach($resultsMobil88g1 as $resultMobil88g1){ ?>
-                <img class="d-block img-fluid" src="<?php echo $resultMobil88g1->nodeValue; ?>" alt="First slide">
-              <?php } ?>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://worajv.com/wp-content/uploads/2015/01/gt4_content_1_900x350px.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://www.adhulhondamakassar.com/wp-content/uploads/2018/08/99ZT9QcO69FB2HKzifeS_honda_id_bannerhrvq_02-900x350.jpg" alt="Third slide">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>          
+<!-- Indicators -->
+<ul class="carousel-indicators">
+  <li data-target="#demo" data-slide-to="0" class="active"></li>
+  <li data-target="#demo" data-slide-to="1"></li>
+  <li data-target="#demo" data-slide-to="2"></li>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+  <div class="carousel-item active">
+  <?php foreach($resultsMobil88g1 as $resultMobil88g1){ ?>
+    <img src="<?php echo $resultMobil88g1->nodeValue; ?>" alt="Los Angeles" width="1100" height="500">
+  <?php } ?>
+  <div class="carousel-caption d-none d-md-block">
+  <?php foreach ($resultsMobil881 as $resultMobil881) { ?>
+    <h3><a href="<?php echo $resultMobil881->childNodes[1]->attributes['href']->nodeValue; ?>"><?php echo $resultMobil881->childNodes[3]->nodeValue."<br/>"; ?></a></h5>
+    <h5><?php echo $resultMobil881->childNodes[7]->nodeValue."<br/><br/>"; ?></h5>
+    <h5><?php echo $resultMobil881->childNodes[5]->nodeValue."<br/><br/>"; ?></h5>
+    <p>mobil88.astra</p>
+  <?php } ?>
+  </div>
+  </div>
+  <div class="carousel-item">
+  <?php foreach($resultsGarasig as $resultGarasig){ ?>
+    <img src="<?php echo $resultGarasig->nodeValue; ?>" alt="Chicago" width="1100" height="500">
+  <?php } ?>
+  <div class="carousel-caption d-none d-md-block">
+  <?php foreach ($resultsGarasi as $resultGarasi) { ?>
+    <h3><a href=""><?php echo $resultGarasi->nodeValue."<br/>"; ?></a></h3>
+    <h5><?php echo $resultGarasi->childNodes[1]->nodeValue."<br>"; ?></h5>
+    <h5><?php echo $resultGarasi->childNodes[4]->nodeValue."<br>"; ?></h5>
+    <p>garasi.id</p>
+  <?php } ?>
+  </div>
+  </div>
+</div>
+
+<!-- Left and right controls -->
+<a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</a>
+</div>     
 
           <h2>Mobil Bekas Terbaru Mobil 88 Astra</h2>
           <hr>
@@ -303,12 +331,14 @@
           <h2>Mobil Bekas Terbaru Otomart</h2>
           <hr>
           <div class="row">
-            <?php foreach($resultsOtomart as $resultOtomart) { ?>
+            <?php foreach($resultsOtomart as $resultOtomart) { 
+              //foreach($resultsOtomartg as $resultOtomartg){ ?>
+              <?php //echo $resultOtomartg->nodeValue; ?>
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card h-100">
-                <?php  ?>
+              
                     
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#"><?php echo $resultOtomart->childNodes[1]->nodeValue."<br/>"; ?></a>
@@ -318,14 +348,14 @@
                 </div>
               </div>
             </div>
-            <?php } ?>
+            <?php } //} ?>
             
             <?php foreach($resultsOtomart2 as $resultOtomart2) { ?>
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card h-100">
                 <?php  ?>
                     
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#"><?php echo $resultOtomart2->childNodes[1]->nodeValue."<br/>"; ?></a>
@@ -342,7 +372,7 @@
               <div class="card h-100">
                 <?php  ?>
                     
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#"><?php echo $resultOtomart3->childNodes[1]->nodeValue."<br/>"; ?></a>
@@ -359,7 +389,7 @@
               <div class="card h-100">
                 <?php  ?>
                     
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#"><?php echo $resultOtomart4->childNodes[1]->nodeValue."<br/>"; ?></a>
